@@ -105,50 +105,8 @@ func main() {
 				}
 			},
 		},
-		// {
-		// 	Name:  "displayls",
-		// 	Usage: "Returns list of display names",
-		// 	Action: func(c *cli.Context) {
-		// 		screenList := screens.List()
-		// 		for _, screen := range screenList {
-		// 			println(screen)
-		// 		}
-		// 	},
-		// },
-		// {
-		// 	Name:  "active",
-		// 	Usage: "Returns active display name",
-		// 	Action: func(c *cli.Context) {
-		// 		println(screens.Active())
-		// 	},
-		// },
-		// {
-		// 	Name:  "ifactive",
-		// 	Usage: "Turns on light if display is active",
-		// 	Action: func(c *cli.Context) {
-		// 		activeDisplay := screens.Active()
-		// 		var displayID string
-		// 		var selector string
-		// 		var debug bool
-		// 		if c.NArg() == 2 {
-		// 			displayID = c.Args()[0]
-		// 			selector = c.Args()[1]
-		// 			debug = c.GlobalBool("debug")
-		// 		} else {
-		// 			println("Enter displayID and lightID")
-		// 			println("arg size %s", c.NArg())
-		// 			return
-		// 		}
-		// 		if activeDisplay == displayID {
-		// 			println("Enabling: ", selector)
-		// 			client.SelectLight(debug, selector)
-		// 			client.On(debug)
-		// 		}
-		// 	},
-		// },
 		{
 			Name:        "displays",
-			Aliases:     []string{"t"},
 			Usage:       "Commands relating to macos displays and triggering lifx bulbs",
 			Subcommands: []cli.Command{
 			  {

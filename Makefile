@@ -1,19 +1,23 @@
-GOPATH := $(shell pwd)
+GOPATH := $(shell GOPATH)
 
 default: build
 
 build:
-	cd src/lifx/ && GOPATH=${GOPATH} go install
+	GOPATH=${GOPATH} go build
 
-config:
-	GOPATH=${GOPATH} go get ./...
+install: build
+	GOBIN=/usr/local/bin/ go install
 
-clean:
-	rm -rf pkg/
-	rm -rf bin/
-
-install: clean build
-	sudo cp ./bin/lifx /usr/local/bin
+install-daemon: install
+	mkdir -p /Users/Shared/bin
+	cp run/desklight.sh /Users/Shared/bin/
+	cp run/custom.desklight.plist ~/Library/LaunchAgents/
+	launchctl load -w ~/Library/LaunchAgents/custom.desklight.plist
+	launchctl start custom.desklight
 
 uninstall:
-	sudo rm /usr/local/bin/lifx
+	sudo rm /usr/local/bin/lifx-cli
+	rm /Users/Shared/bin/desklight.sh
+	rm ~/Library/LaunchAgents/custom.desklight.plist
+	launchctl unload -w ~/Library/LaunchAgents/custom.desklight.plist
+	launchctl stop custom.desklight

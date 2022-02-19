@@ -142,15 +142,15 @@ func Off(debug bool) {
 }
 
 func Set(selector string, state string) {
-	SelectLight(false, selector)
+	SelectLight(true, selector)
 	if state == "on" {
 		fmt.Println("Light on")
-		On(false)
+		On(true)
 		return
 	}
 	if state == "off" {
 		fmt.Println("Light off")
-		Off(false)
+		Off(true)
 		return
 	}
 	fmt.Println("Selected invalidate light state")
